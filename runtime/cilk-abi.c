@@ -442,6 +442,8 @@ CILK_ABI_WORKER_PTR BIND_THREAD_RTN(void)
     __cilkrts_set_tls_worker(w);
     __cilkrts_cilkscreen_establish_worker(w);
 
+    if(g->late_init)
+        g->late_init(w);
 
     START_INTERVAL(w, INTERVAL_IN_SCHEDULER);
     START_INTERVAL(w, INTERVAL_IN_RUNTIME);

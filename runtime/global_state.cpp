@@ -444,6 +444,8 @@ global_state_t* cilkg_get_user_settable_values()
         g->record_replay_file_name  = NULL;
         g->record_or_replay         = RECORD_REPLAY_NONE;  // set by user
 
+        g->late_init = NULL;
+
         if (always_force_reduce())
             g->force_reduce = true;
         else if (cilkos_getenv(envstr, sizeof(envstr), "CILK_FORCE_REDUCE"))
@@ -615,6 +617,10 @@ int cilkg_is_published(void)
 int cilkg_set_param(const char* param, const char* value)
 {
     return set_param_imp(cilkg_get_user_settable_values(), param, value);
+}
+
+void cilkg_set_late_init(const void* func) {
+    cilkg_get_user_settable_values()->late_init = (void (*)(__cilkrts_worker*)) func;
 }
 
 #ifdef _WIN32

@@ -122,6 +122,11 @@ CILK_API_INT __cilkrts_set_param(const char* param, const char* value)
     return cilkg_set_param(param, value);
 }
 
+CILK_ABI_VOID __cilkrts_set_late_init(const void* func) {
+    cilkg_set_late_init(func);
+}
+
+
 #ifdef _WIN32
 CILK_API_INT __cilkrts_set_param_w(const wchar_t* param, const wchar_t* value)
 {

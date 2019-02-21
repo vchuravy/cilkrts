@@ -258,6 +258,9 @@ struct global_state_t { /* COMMON_PORTABLE */
     /// Pointer to scheduler entry point
     void (*scheduler)(__cilkrts_worker *w);
 
+    /// Pointer to late init function
+    void (*late_init)(__cilkrts_worker *w);
+
     /**
      * @brief Buffer to force P and Q to appear on a different cache
      * line from the previous member variables.
@@ -359,6 +362,8 @@ global_state_t* cilkg_get_global_state(void)
  *   cannot be tested at this time.
  */
 int cilkg_set_param(const char* param, const char* value);
+
+void cilkg_set_late_init(const void* func);
 #ifdef _WIN32
 /**
  * @brief Implementation of __cilkrts_set_params for Unicode characters on

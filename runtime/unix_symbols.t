@@ -72,6 +72,7 @@ __cilkrts_rethrow
 __cilkrts_return_exception
 __cilkrts_save_fp_ctrl_state
 __cilkrts_set_param
+__cilkrts_set_late_init
 __cilkrts_stack_alloc
 __cilkrts_stack_free
 __cilkrts_sync
